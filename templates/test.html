@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Test Form Submission</title>
+  </head>
+  <body>
+    <form action="{{ url_for('routes.update_alumni', profile_id=entry['profile_id']) }}" method="POST">
+      <input type="text" name="name" value="Test Name">
+      <input type="email" name="email" value="test@example.com">
+      <button type="submit" name="submit_test" class="btn btn-primary" onclick="console.log('Button clicked')">Save</button>
+    </form>
+  </body>
+</html>

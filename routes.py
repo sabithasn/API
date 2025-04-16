@@ -5,7 +5,15 @@ def load_campuses_and_departments():
     return pd.read_csv("data/campus_departments.csv")
 
 routes = Blueprint("routes", __name__)
-
+def load_users():
+    dtype_mapping = {
+        "ColumnName33": "str"  # Replace 'ColumnName33' with the actual column name
+    }
+    users = pd.read_csv("data/alumniData.csv", dtype=dtype_mapping)
+    users.columns = users.columns.str.strip()  # Remove leading/trailing spaces
+    print("Cleaned Columns:", users.columns)  # Debug cleaned column names
+    return users
+'''
 def load_users():
     users = pd.read_csv("data/alumniData.csv")  # Load the CSV file
     users.columns = users.columns.str.strip()  # Remove leading/trailing spaces
@@ -13,8 +21,11 @@ def load_users():
     return users
     #return pd.read_csv("data/alumniData.csv")  # Update CSV name
 
-def load_roles():
-    return pd.read_csv("data/roles.csv")
+def load_users():
+    dtype_mapping = {
+        "ColumnName33": "str"  # Replace 'ColumnName33' with the actual name of the column
+    }
+    return pd.read_csv("data/alumniData.csv", dtype=dtype_mapping)
 
 @routes.route("/test")
 def test_form():
@@ -22,7 +33,7 @@ def test_form():
     entry = {"profile_id": 2099126}
     return render_template("test.html", entry=entry)
 
-
+'''
 @routes.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
